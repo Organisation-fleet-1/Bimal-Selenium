@@ -1,0 +1,72 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>system-plus-selenium-cucumber-project</groupId>
+	<artifactId>system-plus-selenium-cucumber-project</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>1.8</java.version>
+		<cucumber-java.version>7.20.0</cucumber-java.version>
+		<selenium-java.version>4.25.0</selenium-java.version>
+		<cucumber-testng.version>7.19.0</cucumber-testng.version>
+		<testng.version>7.10.1</testng.version>
+		<webdrivermanager.version>5.5.0</webdrivermanager.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-java</artifactId>
+			<version>${cucumber-java.version}</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/TestNg -->
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-testng</artifactId>
+			<version>${cucumber-testng.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<!--
+		https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>${selenium-java.version}</version>
+		</dependency>
+		<!-- TestNG Dependency -->
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<version>${testng.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.github.bonigarcia</groupId>
+			<artifactId>webdrivermanager</artifactId>
+			<version>${webdrivermanager.version}</version> <!-- Use the latest
+			version -->
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.0.0-M5</version>
+				<configuration>
+					<suiteXmlFiles>
+						<suiteXmlFile>src/test/resources/runner.xml </suiteXmlFile>
+					</suiteXmlFiles>
+					<properties>
+						<property>
+							<name>dataproviderthreadcount</name>
+							<value>2</value>
+						</property>
+					</properties>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

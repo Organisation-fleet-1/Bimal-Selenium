@@ -1,0 +1,21 @@
+# Ignore Maven build directories
+target/
+
+# Ignore IntelliJ IDEA files
+.idea/
+*.iml
+
+# Ignore Eclipse files
+.classpath
+.project
+/.settings/
+
+# Ignore library files
+lib/
+*.jar
+
+# Ignore logs
+*.log
+
+# Ignore any temporary files
+*.tmp
