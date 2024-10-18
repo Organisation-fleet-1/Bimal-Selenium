@@ -18,7 +18,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class SearchFunctionality_Steps {
-	WebDriver driver = null;
+	WebDriver driver;
 	HomePage homePage;
 
 	private Properties properties = new Properties();

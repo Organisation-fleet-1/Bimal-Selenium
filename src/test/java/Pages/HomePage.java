@@ -32,7 +32,7 @@ public class HomePage {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(txt_search_element));
 
-        //checks search field is visible ornt
+        //checks search field is visible or not
         if(!txt_search_element.isDisplayed() || !btn_search_element.isDisplayed())
         	return false;
 		
