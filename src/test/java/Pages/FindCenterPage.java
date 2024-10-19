@@ -33,7 +33,7 @@ public class FindCenterPage {
 		top_find_a_center_button.click();
 		
 		try {
-		    Thread.sleep(10000); // Sleep for 1 second
+		    Thread.sleep(5000); // Sleep for 1 second
 		} catch (InterruptedException e) {
 		    e.printStackTrace();
 		}
