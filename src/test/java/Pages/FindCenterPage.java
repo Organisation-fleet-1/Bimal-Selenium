@@ -22,6 +22,9 @@ public class FindCenterPage {
 	private By center_address = By.xpath("//*[@class='centerResult__address']");
 	private By tooltip_center_name = By.xpath("//*[@class='mapTooltip__headline']");
 	private By tolltip_address = By.xpath("//*[@class='mapTooltip__address']");
+	private By floating_button = By.xpath("//button[@class='ot-floating-button__open']");
+	private By pac_container = By.xpath("//div[contains(@class,'pac-container')]");
+	private By mapContainer = By.xpath("//*[@class='map-container']");
 	
 	
 	public FindCenterPage(WebDriver driver) {
@@ -31,33 +34,26 @@ public class FindCenterPage {
 	public void clickOnFindCenter() {
 		WebElement top_find_a_center_button = this.driver.findElements(topFindACenterButton).get(1);
 		top_find_a_center_button.click();
-		
-		try {
-		    Thread.sleep(5000); // Sleep for 1 second
-		} catch (InterruptedException e) {
-		    e.printStackTrace();
-		}
+	
+        WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(30)); 
+		wait.until(ExpectedConditions.visibilityOfElementLocated(mapContainer));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(floating_button));
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("elipsesLoader")));
 	}
 	public void findACenter(String inputString) {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		WebDriverWait wait = new WebDriverWait(this.driver, Duration.ofSeconds(30));
 		// Wait for address input box to be visible
         wait.until(ExpectedConditions.invisibilityOfElementLocated(progress_bar));		
 		
 		WebElement findCenterInputBox = this.driver.findElement(address_input);
 		
 		findCenterInputBox.sendKeys(inputString);
-		try {
-		    Thread.sleep(2000); // Sleep for 1 second
-		} catch (InterruptedException e) {
-		    e.printStackTrace();
-		}		
+		
+		wait.until(ExpectedConditions.visibilityOfElementLocated(pac_container));
+
 		findCenterInputBox.sendKeys(Keys.ENTER);
 		
-		try {
-		    Thread.sleep(1000); // Sleep for 1 second
-		} catch (InterruptedException e) {
-		    e.printStackTrace();
-		}	
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(pac_container));
 	}	
 	
 	public boolean verifyNumberOfCenters() {
@@ -74,11 +70,9 @@ public class FindCenterPage {
 	public void clickOnFirstCdenter() {
 		WebElement firstCenter = this.driver.findElements(center_table_obj).get(0);
 		firstCenter.click();
-		try {
-		    Thread.sleep(1000); // Sleep for 1 second
-		} catch (InterruptedException e) {
-		    e.printStackTrace();
-		}		
+		
+		WebDriverWait wait = new WebDriverWait(this.driver, Duration.ofSeconds(30));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(tooltip_center_name));
  	}	
 	public boolean verifyCenterNameAndAdress() {
 		WebElement firstCenter = this.driver.findElements(center_table_obj).get(0);
